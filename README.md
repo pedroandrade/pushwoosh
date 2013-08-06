@@ -17,23 +17,30 @@ Or install it yourself as:
     $ gem install pushwoosh
 
 ## Usage
-
 Create a initializer in your application
 
+```
 config/initializers/pushwoosh.rb
+```
+and put configs
 
+```
 Pushwoosh.configure do |config|
   config.application = '5555-5555'
   config.auth = 'abcdefghijklmnopq'
 end
+```
 
-Notify all:
-
+### Notify all devices:
+```
 Pushwoosh.notify_all(message)
+```
 
-Notify some devices or a device:
-
+### Notify some devices or a device:
+```
 Pushwoosh.notify_devices(message, devices)
+```
+
 NOTE: devices is an array
 
 ## Contributing
