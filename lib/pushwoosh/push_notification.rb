@@ -1,41 +1,30 @@
+require 'httparty'
+require 'json'
+require 'pushwoosh/request'
+require 'pushwoosh/response'
+
 module Pushwoosh
   class PushNotification
-    include HttParty
 
     def initialize(options = {})
-      auth = { application: options[:auth],:auth: options[:auth_token]}
+      @auth = {application: options[:application], auth: options[:auth]}
     end
 
     def notify_all(message)
-      notify_devices({content: message})
+      create_message({content: message})
     end
 
-    def notify_devices(notification_options = {}, devices = {})
-       #- Default options, uncomment :data or :devices if needed
-       default_notification_options = {
-                           # YYYY-MM-DD HH:mm  OR 'now'
-                           send_date: "now",
-                           # Object( language1: 'content1', language2: 'content2' ) OR string
-                           content: {
-                               fr: "Test",
-                               en: "Test"
-                           },
-                           # JSON string or JSON object "custom": "json data"
-                           #:data  => {
-                           #    :custom_data  => value
-                           #},
-                           # omit this field (push notification will be delivered to all the devices for the application), or provide the list of devices IDs
-                           devices: devices
-                         }
+    def notify_devices(message, devices)
+      create_message({content: message, devices: devices})
+    end
 
-       #- Merging with specific options
-       final_notification_options = default_notification_options.merge(notification_options)
-
-       #- Constructing the final call
-       options = @auth.merge({notifications: [final_notification_options]})
-       options = {request:options}
-       #- Executing the POST API Call with HTTPARTY - :body => options.to_json allows us to send the json as an object instead of a string
-       response = self.class.post("https://cp.pushwoosh.com/json/1.3/createMessage",  body: options.to_json,headers: { 'Content-Type' => 'application/json' })
-     end
+    def create_message(notification_options = {})
+     default_notification_options = {send_date: "now"}
+     final_notification_options = default_notification_options.merge(notification_options)
+     options = @auth.merge({notifications: [final_notification_options]})
+     options = {request:options}
+     response = Request.post("/createMessage",  body: options.to_json)
+     Response.new(response.parsed_response['status_code'], response.parsed_response['status_message'], response.parsed_response['response'])
+    end
   end
 end
