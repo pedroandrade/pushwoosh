@@ -18,7 +18,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a initializer in your application
+
+config/initializers/pushwoosh.rb
+
+Pushwoosh.configure do |config|
+  config.application = '5555-5555'
+  config.auth = 'abcdefghijklmnopq'
+end
+
+Notify all:
+
+Pushwoosh.notify_all(message)
+
+Notify some devices or a device:
+
+Pushwoosh.notify_devices(message, devices)
+NOTE: devices is an array
 
 ## Contributing
 
