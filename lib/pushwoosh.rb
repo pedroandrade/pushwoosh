@@ -13,7 +13,7 @@ module Pushwoosh
     end
 
     def notify_devices(message, devices = [])
-      response = PushNotification.new(options).notify_device({content: message, devices: devices})
+      response = PushNotification.new(options).notify_devices(message, devices)
     end
 
   end
