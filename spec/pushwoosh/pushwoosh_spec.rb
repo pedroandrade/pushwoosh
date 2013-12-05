@@ -10,7 +10,7 @@ describe Pushwoosh do
 
   it "send push message" do
     VCR.use_cassette 'pushwoosh/push_notification' do
-      response = Pushwoosh::notify_all("CDV")
+      response = Pushwoosh::notify_all("CDV" *500)
       expect(response.status_code).to eq 200
     end
   end

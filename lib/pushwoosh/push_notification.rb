@@ -6,16 +6,18 @@ require 'pushwoosh/response'
 module Pushwoosh
   class PushNotification
 
+    STRING_BYTE_LIMIT = 256
+
     def initialize(options = {})
       @auth = {application: options[:application], auth: options[:auth]}
     end
 
     def notify_all(message)
-      create_message({content: message})
+      create_message({content: Pushwoosh::Helpers::limit_string(message, STRING_BYTE_LIMIT)})
     end
 
     def notify_devices(message, devices)
-      create_message({content: message, devices: devices})
+      create_message({content: Pushwoosh::Helpers::limit_string(message, STRING_BYTE_LIMIT), devices: devices})
     end
 
     def create_message(notification_options = {})
