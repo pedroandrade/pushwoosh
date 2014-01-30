@@ -46,7 +46,7 @@ module Pushwoosh
         next if value.nil?
 
         unless value.is_a?(String) || value.is_a?(Symbol)
-          raise(Exception, "Invalid #{credential} specified: #{value} must be a string or symbol.")
+          raise StandardError, "Invalid #{credential} specified: #{value} must be a string or symbol."
         end
       end
     end
