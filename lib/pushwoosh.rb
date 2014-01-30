@@ -5,9 +5,9 @@ require 'httparty'
 require 'pushwoosh/helpers'
 
 module Pushwoosh
+  extend Pushwoosh::Configurable
 
   class << self
-    include Pushwoosh::Configurable
 
     def notify_all(message, notification_options = {})
       response = PushNotification.new(options).notify_all(message, notification_options)
