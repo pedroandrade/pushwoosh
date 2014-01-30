@@ -3,10 +3,10 @@ module Pushwoosh
 
     attr_accessor :status_code, :status_message, :response
 
-    def initialize(status_code, status_message, response)
-      @status_code = status_code
-      @status_message = status_message
-      @response = response
+    def initialize(pushwoosh_response = {})
+      @status_code = pushwoosh_response[:status_code]
+      @status_message = pushwoosh_response[:status_message]
+      @response = pushwoosh_response[:response]
     end
   end
 end
