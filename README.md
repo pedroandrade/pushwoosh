@@ -1,6 +1,6 @@
 # Pushwoosh
 
-TODO: Write a gem description
+This a simple wrapper to pushwoosh remote API
 
 ## Installation
 
