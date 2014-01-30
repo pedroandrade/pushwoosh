@@ -13,9 +13,9 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.2.2
+      - nginx/1.4.2
       Date:
-      - Mon, 05 Aug 2013 19:32:46 GMT
+      - Tue, 28 Jan 2014 21:42:54 GMT
       Content-Type:
       - application/json; charset=utf8
       Transfer-Encoding:
@@ -23,12 +23,16 @@ http_interactions:
       Connection:
       - keep-alive
       X-Powered-By:
-      - PHP/5.4.4
+      - phpDaemon/1.0-beta3
+      X-Pw-Cluster-Node:
+      - api-01
       Access-Control-Allow-Origin:
-      - '*'
+      - "*"
+      X-Pw-Front-Node:
+      - front-01
     body:
       encoding: UTF-8
-      string: '{"status_code":200,"status_message":"OK","response":{"Messages":["E380-6E23E78A-3A044A2B"]}}'
-    http_version:
-  recorded_at: Mon, 05 Aug 2013 19:32:45 GMT
-recorded_with: VCR 2.5.0
+      string: "{\"status_code\":200,\"status_message\":\"OK\",\"response\":{\"Messages\":[\"B03F-9E4D278D-D187C6AD\"]}}"
+    http_version: 
+  recorded_at: Tue, 28 Jan 2014 21:42:54 GMT
+recorded_with: VCR 2.8.0

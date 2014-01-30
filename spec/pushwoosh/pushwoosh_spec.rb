@@ -10,16 +10,16 @@ describe Pushwoosh do
 
   it "send push message" do
     VCR.use_cassette 'pushwoosh/push_notification' do
-      response = Pushwoosh::notify_all("CDV" *500)
+      response = Pushwoosh::notify_all("Testing")
       expect(response.status_code).to eq 200
     end
   end
 
-  it  'return 210 if message is empty' do
+  it  'raises a error if message is empty' do
     VCR.use_cassette 'pushwoosh/empty_message_push' do
-      response = Pushwoosh::notify_all("{}")
-      expect(response.status_code).to eq 210
+      lambda {Pushwoosh::notify_all("")}.should raise_error
     end
   end
+
 
 end
