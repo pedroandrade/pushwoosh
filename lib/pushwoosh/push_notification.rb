@@ -46,8 +46,10 @@ module Pushwoosh
     end
 
     def build_request(notification_options = {})
-      @base_request.merge(notifications:
+      {
+        request: @base_request[:request].merge(notifications:
         [default_notification_options.merge(notification_options)])
+      }
     end
 
     def default_notification_options
