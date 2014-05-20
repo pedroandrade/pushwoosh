@@ -10,7 +10,7 @@ module Pushwoosh
 
     class Error < StandardError; end;
 
-    STRING_BYTE_LIMIT = 256
+    STRING_BYTE_LIMIT = 205 # recommended value, see https://community.pushwoosh.com/questions/286/why-am-i-receiving-a-payload-error for more details
 
     def initialize(options = {})
       fail 'Missing application' unless options[:application]
