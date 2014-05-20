@@ -41,7 +41,7 @@ module Pushwoosh
     def create_message(notification_options = {})
       fail Error, 'Message is missing' if notification_options[:content].empty?
       response = Request.post("/createMessage",
-        body: build_request(notification_options))
+        body: build_request(notification_options).to_json)
      Response.new(response.parsed_response.with_indifferent_access)
     end
 
