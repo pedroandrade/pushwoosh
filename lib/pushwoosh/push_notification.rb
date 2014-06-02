@@ -10,7 +10,7 @@ module Pushwoosh
 
     class Error < StandardError; end;
 
-    STRING_BYTE_LIMIT = 256
+    STRING_BYTE_LIMIT = 205 # recommended value, see https://community.pushwoosh.com/questions/286/why-am-i-receiving-a-payload-error for more details
 
     def initialize(options = {})
       fail 'Missing application' unless options[:application]
@@ -41,13 +41,15 @@ module Pushwoosh
     def create_message(notification_options = {})
       fail Error, 'Message is missing' if notification_options[:content].empty?
       response = Request.post("/createMessage",
-        body: build_request(notification_options))
+        body: build_request(notification_options).to_json)
      Response.new(response.parsed_response.with_indifferent_access)
     end
 
     def build_request(notification_options = {})
-      @base_request.merge(notifications:
+      {
+        request: @base_request[:request].merge(notifications:
         [default_notification_options.merge(notification_options)])
+      }
     end
 
     def default_notification_options
