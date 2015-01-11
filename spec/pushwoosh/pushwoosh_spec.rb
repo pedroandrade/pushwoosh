@@ -4,20 +4,26 @@ describe Pushwoosh do
   before do
     Pushwoosh.configure do |config|
       config.application = '5555-5555'
-      config.auth = 'abcdefghijklmnopq'
+      config.auth = 'abcefg'
     end
   end
 
-  it "send push message" do
-    VCR.use_cassette 'pushwoosh/push_notification', record: :all do
-      response = Pushwoosh::notify_all("Testing")
-      expect(response.status_code).to eq 200
+  describe '.notify_all' do
+    context 'when has message' do
+      it "sends push message" do
+        VCR.use_cassette 'pushwoosh/push_notification' do
+          response = described_class.notify_all("Testing")
+          expect(response.status_code).to eq 200
+        end
+      end
     end
-  end
 
-  it  'raises a error if message is empty', record: :all do
-    VCR.use_cassette 'pushwoosh/empty_message_push' do
-      lambda {Pushwoosh::notify_all("")}.should raise_error
+    context 'when message is empty' do
+      it  'raises a error if message is empty' do
+        VCR.use_cassette 'pushwoosh/empty_message_push' do
+          expect { described_class.notify_all("") }.to raise_error
+        end
+      end
     end
   end
 end

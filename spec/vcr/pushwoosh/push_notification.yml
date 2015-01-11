@@ -5,8 +5,14 @@ http_interactions:
     uri: https://cp.pushwoosh.com/json/1.3/createMessage
     body:
       encoding: UTF-8
-      string: '{"request":{"application":"5555-5555","auth":"abcdefghijklmnopq","notifications":[{"send_date":"now","content":"CDV"}]}}'
-    headers: {}
+      string: '{"request":{"application":"5555-5555","auth":"abcdefg","notifications":[{"send_date":"now","ios_badges":"+1","content":"Testing"}]}}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
@@ -15,7 +21,7 @@ http_interactions:
       Server:
       - nginx/1.4.2
       Date:
-      - Tue, 28 Jan 2014 21:42:54 GMT
+      - Sun, 11 Jan 2015 21:40:58 GMT
       Content-Type:
       - application/json; charset=utf8
       Transfer-Encoding:
@@ -24,15 +30,19 @@ http_interactions:
       - keep-alive
       X-Powered-By:
       - phpDaemon/1.0-beta3
-      X-Pw-Cluster-Node:
-      - api-01
       Access-Control-Allow-Origin:
       - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, OPTIONS
+      X-Pw-Cluster-Node:
+      - api-02
       X-Pw-Front-Node:
-      - front-01
+      - front-02
     body:
       encoding: UTF-8
-      string: "{\"status_code\":200,\"status_message\":\"OK\",\"response\":{\"Messages\":[\"B03F-9E4D278D-D187C6AD\"]}}"
-    http_version: 
-  recorded_at: Tue, 28 Jan 2014 21:42:54 GMT
+      string: '{"status_code":200,"status_message":"OK","response":{"Messages":["4C2C-9A52A6A4-9BA6D064"]}}'
+    http_version:
+  recorded_at: Sun, 11 Jan 2015 21:40:59 GMT
 recorded_with: VCR 2.8.0
