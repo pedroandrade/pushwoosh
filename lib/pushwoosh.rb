@@ -10,11 +10,11 @@ module Pushwoosh
   class << self
 
     def notify_all(message, notification_options = {})
-      response = PushNotification.new(options).notify_all(message, notification_options)
+      PushNotification.new(options).notify_all(message, notification_options)
     end
 
     def notify_devices(message, devices = [], notification_options = {})
-      response = PushNotification.new(options).notify_devices(message, devices, notification_options)
+      PushNotification.new(options).notify_devices(message, devices, notification_options)
     end
 
   end
