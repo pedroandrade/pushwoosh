@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Pushwoosh::VERSION
   spec.authors       = ["Pedro Andrade"]
   spec.email         = ["pedro.rjandrade@gmail.com"]
-  spec.description   = %q{Pushwoosh gem}
+  spec.description   = %q{Pushwoosh wrapper to remote API}
   spec.summary       = %q{Pushwoosh Remote API}
   spec.homepage      = ""
   spec.license       = "MIT"

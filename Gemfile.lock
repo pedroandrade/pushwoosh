@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pushwoosh (0.0.2)
+    pushwoosh (1.0.1)
       httparty (~> 0.13.3)
 
 GEM
