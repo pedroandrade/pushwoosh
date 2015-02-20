@@ -1,17 +1,17 @@
 require 'httparty'
 require 'json'
+require 'pushwoosh/exceptions'
 require 'pushwoosh/request'
 require 'pushwoosh/response'
 require 'pushwoosh/helpers'
 
 module Pushwoosh
   class PushNotification
-    class Error < StandardError; end;
 
     STRING_BYTE_LIMIT = 205 # recommended value, see https://community.pushwoosh.com/questions/286/why-am-i-receiving-a-payload-error for more details
 
-    def initialize(options = {})
-      @options = options
+    def initialize(auth_hash = {})
+      @auth_hash = auth_hash
     end
 
     def notify_all(message, other_options = {})
@@ -26,20 +26,20 @@ module Pushwoosh
 
     private
 
-    attr_reader :options
+    attr_reader :auth_hash
 
     def limited_content(message)
       Helpers.limit_string(message, STRING_BYTE_LIMIT)
     end
 
     def create_message(notification_options = {})
-      fail Error, 'Message is missing' if notification_options[:content].nil? || notification_options[:content].empty?
+      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil? || notification_options[:content].empty?
 
       Request.make_post!('/createMessage', build_notification_options(notification_options))
     end
 
     def build_notification_options(notification_options)
-      { notification_options: default_notification_options.merge(notification_options) }.merge(options)
+      { notification_options: default_notification_options.merge(notification_options) }.merge(auth_hash)
     end
 
     def default_notification_options

@@ -44,7 +44,9 @@ describe Pushwoosh::PushNotification do
 
     context 'when message is empty' do
       it 'raises message is missing error' do
-        expect { subject.notify_all('') }.to raise_error described_class::Error, 'Message is missing'
+        expect {
+           subject.notify_all('')
+        }.to raise_error Pushwoosh::Exceptions::Error, 'Message is missing'
       end
     end
   end
@@ -69,7 +71,7 @@ describe Pushwoosh::PushNotification do
       }
     end
 
-    context 'when message is empty' do
+    context 'when message is not empty' do
       it 'sends the notification for some devices' do
         allow(Pushwoosh::Request).to receive(:make_post!).with("/createMessage", request).and_return(response)
 
@@ -83,7 +85,9 @@ describe Pushwoosh::PushNotification do
 
     context 'when message is empty' do
       it 'raises message is missing error' do
-        expect { subject.notify_devices('', devices) }.to raise_error described_class::Error, 'Message is missing'
+        expect {
+          subject.notify_devices('', devices)
+        }.to raise_error Pushwoosh::Exceptions::Error, 'Message is missing'
       end
     end
   end

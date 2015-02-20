@@ -57,5 +57,21 @@ describe Pushwoosh::Request do
         expect(response_of_make_post.response['Messages']).to eq ['555555534563456345']
       end
     end
+
+    context 'when url is empty' do
+      it 'raises an error' do
+        expect {
+          described_class.new('', options)
+        }.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
+      end
+    end
+
+    context 'when url is nil' do
+      it 'raises an error' do
+        expect {
+          described_class.new(nil, options)
+        }.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
+      end
+    end
   end
 end
