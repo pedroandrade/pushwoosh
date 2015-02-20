@@ -1,55 +1,45 @@
 require 'httparty'
 require 'json'
+require 'pushwoosh/exceptions'
 require 'pushwoosh/request'
 require 'pushwoosh/response'
-require 'active_support/core_ext/hash/indifferent_access'
 require 'pushwoosh/helpers'
 
 module Pushwoosh
   class PushNotification
 
-    class Error < StandardError; end;
-
     STRING_BYTE_LIMIT = 205 # recommended value, see https://community.pushwoosh.com/questions/286/why-am-i-receiving-a-payload-error for more details
 
-    def initialize(options = {})
-      fail 'Missing application' unless options[:application]
-      fail 'Missing auth key' unless options[:auth]
-
-      @base_request = {
-        request: {
-          application: options[:application],
-          auth: options[:auth]
-        }
-      }
+    def initialize(auth_hash = {})
+      @auth_hash = auth_hash
     end
 
-    def notify_all(message, options= {})
-      options.merge!(content: Helpers.limit_string(message, STRING_BYTE_LIMIT))
-      create_message(options)
+    def notify_all(message, other_options = {})
+      other_options.merge!(content: limited_content(message))
+      create_message(other_options)
     end
 
-    def notify_devices(message, devices, options = {})
-      create_message(
-        content: Helpers.limit_string(message, STRING_BYTE_LIMIT),
-        devices: devices
-      )
+    def notify_devices(message, devices, other_options = {})
+      other_options.merge!(content: limited_content(message), devices: devices)
+      create_message(other_options)
     end
 
     private
 
-    def create_message(notification_options = {})
-      fail Error, 'Message is missing' if notification_options[:content].empty?
-      response = Request.post("/createMessage",
-        body: build_request(notification_options).to_json)
-     Response.new(response.parsed_response.with_indifferent_access)
+    attr_reader :auth_hash
+
+    def limited_content(message)
+      Helpers.limit_string(message, STRING_BYTE_LIMIT)
     end
 
-    def build_request(notification_options = {})
-      {
-        request: @base_request[:request].merge(notifications:
-        [default_notification_options.merge(notification_options)])
-      }
+    def create_message(notification_options = {})
+      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil? || notification_options[:content].empty?
+
+      Request.make_post!('/createMessage', build_notification_options(notification_options))
+    end
+
+    def build_notification_options(notification_options)
+      { notification_options: default_notification_options.merge(notification_options) }.merge(auth_hash)
     end
 
     def default_notification_options
