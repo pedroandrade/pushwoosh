@@ -10,7 +10,7 @@ describe Pushwoosh do
 
   describe '.notify_all' do
     context 'when has message' do
-      it "sends push message" do
+      it 'sends push message' do
         VCR.use_cassette 'pushwoosh/push_notification' do
           response = described_class.notify_all("Testing")
           expect(response.status_code).to eq 200
