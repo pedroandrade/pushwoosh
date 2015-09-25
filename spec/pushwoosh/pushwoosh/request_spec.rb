@@ -1,19 +1,18 @@
 require 'spec_helper'
 
 describe Pushwoosh::Request do
-
   describe '#make_post!' do
     let(:body) do
       {
         request:
         {
-          application: "555555",
-          auth: "5555-5555",
+          application: '555555',
+          auth: '5555-5555',
           notifications:
           [{
-            send_date: "now",
-            ios_badges: "+1",
-            content: "Testing"
+            send_date: 'now',
+            ios_badges: '+1',
+            content: 'Testing'
           }]
         }
       }
@@ -21,13 +20,13 @@ describe Pushwoosh::Request do
 
     let(:options) do
       {
-        auth: "5555-5555",
-        application: "555555",
+        auth: '5555-5555',
+        application: '555555',
         notification_options:
         {
-          send_date: "now",
-          :ios_badges=>"+1",
-          content: "Testing"
+          send_date: 'now',
+          ios_badges: '+1',
+          content: 'Testing'
         }
       }
     end
@@ -39,8 +38,8 @@ describe Pushwoosh::Request do
     let(:response_hash) do
       {
         status_code: 200,
-        status_message: "OK",
-        response: { "Messages" => ["555555534563456345"] }
+        status_message: 'OK',
+        response: { 'Messages' => ['555555534563456345'] }
       }
     end
 
@@ -48,7 +47,7 @@ describe Pushwoosh::Request do
       subject { described_class.new('/createMessage', options) }
 
       it 'sends the notification with valid params' do
-        allow(described_class).to receive(:post).with("/createMessage", body: body.to_json).and_return(response)
+        allow(described_class).to receive(:post).with('/createMessage', body: body.to_json).and_return(response)
         allow(response).to receive(:parsed_response).and_return(OpenStruct.new(response_hash))
         response_of_make_post = subject.make_post!
 
@@ -60,17 +59,17 @@ describe Pushwoosh::Request do
 
     context 'when url is empty' do
       it 'raises an error' do
-        expect {
+        expect do
           described_class.new('', options)
-        }.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
+        end.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
       end
     end
 
     context 'when url is nil' do
       it 'raises an error' do
-        expect {
+        expect do
           described_class.new(nil, options)
-        }.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
+        end.to raise_error Pushwoosh::Exceptions::Error, 'URL is empty'
       end
     end
   end

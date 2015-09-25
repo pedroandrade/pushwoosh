@@ -10,14 +10,12 @@ module Pushwoosh
     def_delegator :options, :hash
 
     class << self
-
       def keys
         @keys ||= [
           :application,
-          :auth,
+          :auth
         ]
       end
-
     end
 
     def configure
@@ -26,7 +24,7 @@ module Pushwoosh
       self
     end
 
-  private
+    private
 
     # @return [Hash]
     def credentials
@@ -38,7 +36,7 @@ module Pushwoosh
 
     # @return [Hash]
     def options
-      Hash[Pushwoosh::Configurable.keys.map{|key| [key, instance_variable_get(:"@#{key}")]}]
+      Hash[Pushwoosh::Configurable.keys.map { |key| [key, instance_variable_get(:"@#{key}")] }]
     end
 
     def validate_credential_type!
@@ -46,10 +44,9 @@ module Pushwoosh
         next if value.nil?
 
         unless value.is_a?(String) || value.is_a?(Symbol)
-          raise StandardError, "Invalid #{credential} specified: #{value} must be a string or symbol."
+          fail StandardError, "Invalid #{credential} specified: #{value} must be a string or symbol."
         end
       end
     end
-
   end
 end

@@ -12,16 +12,16 @@ describe Pushwoosh do
     context 'when has message' do
       it 'sends push message' do
         VCR.use_cassette 'pushwoosh/push_notification' do
-          response = described_class.notify_all("Testing")
+          response = described_class.notify_all('Testing')
           expect(response.status_code).to eq 200
         end
       end
     end
 
     context 'when message is empty' do
-      it  'raises a error if message is empty' do
+      it 'raises a error if message is empty' do
         VCR.use_cassette 'pushwoosh/empty_message_push' do
-          expect { described_class.notify_all("") }.to raise_error
+          expect { described_class.notify_all('') }.to raise_error
         end
       end
     end

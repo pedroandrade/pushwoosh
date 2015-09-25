@@ -7,7 +7,6 @@ require 'pushwoosh/helpers'
 
 module Pushwoosh
   class PushNotification
-
     STRING_BYTE_LIMIT = 205 # recommended value, see https://community.pushwoosh.com/questions/286/why-am-i-receiving-a-payload-error for more details
 
     def initialize(auth_hash = {})
@@ -44,8 +43,8 @@ module Pushwoosh
 
     def default_notification_options
       {
-        send_date: "now",
-        ios_badges: "+1"
+        send_date: 'now',
+        ios_badges: '+1'
       }
     end
   end
