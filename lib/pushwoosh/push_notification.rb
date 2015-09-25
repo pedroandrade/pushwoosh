@@ -32,7 +32,7 @@ module Pushwoosh
     end
 
     def create_message(notification_options = {})
-      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil? || notification_options[:content].empty?
+      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil?
 
       Request.make_post!('/createMessage', build_notification_options(notification_options))
     end
