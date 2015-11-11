@@ -14,12 +14,15 @@ module Pushwoosh
     end
 
     def notify_all(message, other_options = {})
-      other_options.merge!(content: limited_content(message))
+      other_options.merge!(content: limited_content(message)) if message.present?
+
       create_message(other_options)
     end
 
     def notify_devices(message, devices, other_options = {})
-      other_options.merge!(content: limited_content(message), devices: devices)
+      other_options.merge!(devices: devices)
+      other_options.merge!(content: limited_content(message)) if message.present?
+
       create_message(other_options)
     end
 
@@ -32,8 +35,6 @@ module Pushwoosh
     end
 
     def create_message(notification_options = {})
-      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil?
-
       Request.make_post!('/createMessage', build_notification_options(notification_options))
     end
 
