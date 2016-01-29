@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cp.pushwoosh.com/json/1.3/unregisterDevice
+    body:
+      encoding: UTF-8
+      string: '{"request":{"hwid":null,"application":"5555555"}}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.6.3
+      Date:
+      - Fri, 29 Jan 2016 19:29:07 GMT
+      Content-Type:
+      - application/json; charset=utf8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - phpDaemon/1.0-beta3
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, OPTIONS
+      X-Pw-Cluster-Node:
+      - api-25
+      X-Pw-Front-Node:
+      - front-08
+    body:
+      encoding: UTF-8
+      string: '{"status_code":210,"status_message":"No hwid given","response":null}'
+    http_version:
+  recorded_at: Fri, 29 Jan 2016 19:29:10 GMT
+recorded_with: VCR 2.8.0
