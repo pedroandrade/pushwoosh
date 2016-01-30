@@ -1,4 +1,3 @@
-require 'pry'
 module Pushwoosh
   class Response
     attr_reader :message, :body, :response_object

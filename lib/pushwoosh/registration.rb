@@ -1,4 +1,3 @@
-require "pry"
 module Pushwoosh
   class Registration
     attr_reader :auth, :application
@@ -15,18 +14,6 @@ module Pushwoosh
     end
 
     def register(data = {})
-      # {
-      #   request:{
-      #     application:"APPLICATION_CODE",
-      #     push_token:"DEVICE_PUSH_TOKEN",
-      #     language:"en",  // optional
-      #     hwid: "hardware device id",
-      #     timezone: 3600, // offset in seconds
-      #     device_type:1
-      #   }
-      # }
-      # Validate: device_type
-
       post_request(
         register_endpoint,
         wrap_request(register_data.merge(data))
@@ -34,12 +21,6 @@ module Pushwoosh
     end
 
     def unregister(hwid)
-      # {
-      #   "request":{
-      #     "application":"APPLICATION_CODE",
-      #     "hwid": "hardware device id"
-      #   }
-      # }
       data = { hwid: hwid }
       post_request(
         unregister_endpoint,
