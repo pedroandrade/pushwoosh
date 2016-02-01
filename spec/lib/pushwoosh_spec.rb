@@ -17,13 +17,5 @@ describe Pushwoosh do
         end
       end
     end
-
-    context 'when message is empty' do
-      it  'raises a error if message is empty' do
-        VCR.use_cassette 'pushwoosh/empty_message_push' do
-          expect { described_class.notify_all("") }.to raise_error
-        end
-      end
-    end
   end
 end

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://cp.pushwoosh.com/json/1.3/createMessage
     body:
       encoding: UTF-8
-      string: '{"request":{"application":"5555-5555","auth":"abcdefg","notifications":[{"send_date":"now","content":"Testing"}]}}'
+      string: '{"request":{"application":"5555-5555","auth":"abcefg","notifications":[{"send_date":"now","content":""}]}}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -19,9 +19,9 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.4.2
+      - nginx/1.6.3
       Date:
-      - Sun, 11 Jan 2015 21:40:58 GMT
+      - Mon, 01 Feb 2016 19:56:10 GMT
       Content-Type:
       - application/json; charset=utf8
       Transfer-Encoding:
@@ -37,12 +37,12 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST, PUT, OPTIONS
       X-Pw-Cluster-Node:
-      - api-02
+      - api-32
       X-Pw-Front-Node:
-      - front-02
+      - front-05
     body:
       encoding: UTF-8
-      string: '{"status_code":200,"status_message":"OK","response":{"Messages":["4C2C-9A52A6A4-9BA6D064"]}}'
-    http_version:
-  recorded_at: Sun, 11 Jan 2015 21:40:59 GMT
+      string: '{"status_code":210,"status_message":"Account not found","response":null}'
+    http_version: 
+  recorded_at: Mon, 01 Feb 2016 19:56:11 GMT
 recorded_with: VCR 2.8.0

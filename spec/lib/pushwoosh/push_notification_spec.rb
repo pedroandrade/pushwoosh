@@ -22,7 +22,6 @@ describe Pushwoosh::PushNotification do
       {
         notification_options: {
           send_date: "now",
-          :ios_badges=>"+1",
           content: "Testing"
         },
         auth: "5555-5555",
@@ -41,14 +40,6 @@ describe Pushwoosh::PushNotification do
         expect(response_of_notify.response['Messages']).to eq ['555555534563456345']
       end
     end
-
-    context 'when message is empty' do
-      xit 'raises message is missing error' do
-        expect {
-           subject.notify_all('')
-        }.to raise_error Pushwoosh::Exceptions::Error, 'Message is missing'
-      end
-    end
   end
 
   describe '#notify_devices' do
@@ -61,7 +52,6 @@ describe Pushwoosh::PushNotification do
       {
         notification_options: {
           send_date:  "now",
-          ios_badges: "+1",
           content:    "Testing",
           devices: ["dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41",
                     'bec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41']
@@ -80,14 +70,6 @@ describe Pushwoosh::PushNotification do
         expect(response_of_notify.status_code).to eq 200
         expect(response_of_notify.status_message).to eq 'OK'
         expect(response_of_notify.response['Messages']).to eq ['555555534563456345']
-      end
-    end
-
-    context 'when message is empty' do
-      it 'raises message is missing error' do
-        expect {
-          subject.notify_devices('', devices)
-        }.to raise_error Pushwoosh::Exceptions::Error, 'Message is missing'
       end
     end
   end
