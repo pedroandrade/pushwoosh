@@ -41,8 +41,6 @@ module Pushwoosh
     def default_notification_options
       {
         send_date: "now",
-        ios_badges: "+1",
-        ios_sound: ""
       }
     end
   end
