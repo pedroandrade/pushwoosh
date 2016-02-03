@@ -1,3 +1,3 @@
 module Pushwoosh
-  VERSION = "1.0.1-r1"
+  VERSION = "1.0.2"
 end
