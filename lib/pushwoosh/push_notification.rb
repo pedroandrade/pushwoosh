@@ -33,7 +33,7 @@ module Pushwoosh
     end
 
     def build_notification_options(notification_options)
-      { notification_options: default_notification_options.merge(notification_options) }.merge(auth_hash)
+      { notification_options: default_notification_options.merge!(notification_options) }.merge(auth_hash)
     end
 
     def default_notification_options
