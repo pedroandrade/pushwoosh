@@ -1,17 +1,25 @@
 module Pushwoosh
   class Response
-    attr_reader :message, :body, :response_object
+    attr_reader :message, :body, :api_response
     attr_accessor :code
 
     alias_method :status_code, :code
+    alias_method :status, :code
     alias_method :status_message, :message
     alias_method :response, :body
 
-    def initialize(parsed_response)
-      @response = parsed_response
-      @code = parsed_response['status_code']
-      @message = parsed_response['status_message']
-      @body = parsed_response['response']
+    def initialize(opts = {})
+      @api_response = opts[:api_response]
+      if @api_response
+        parsed_response = JSON.parse @api_response.body
+        @code  = parsed_response['status_code']
+        @message  = parsed_response['status_message']
+        @body  = parsed_response['response']
+      else
+        @code = opts[:status_code.to_s]
+        @message = opts[:status_message.to_s]
+        @body = opts[:response.to_s]
+      end
     end
 
     def params
@@ -27,7 +35,7 @@ module Pushwoosh
     end
 
     def inspect
-      "<#{self.class.name}: #{params.inspect}>"
+      "<#{self.class.name}: #{params.merge(response: response.inspect).inspect}>"
     end
   end
 end

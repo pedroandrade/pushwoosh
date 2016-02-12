@@ -51,7 +51,7 @@ module Pushwoosh
         }
       )
 
-      our_response = Response.new(response)
+      our_response = Response.new(api_response: response)
 
       standarize_status_code(our_response)
     end
