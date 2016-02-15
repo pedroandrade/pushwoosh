@@ -30,6 +30,28 @@ describe Pushwoosh::Response do
 
   subject { described_class.new(client_response) }
 
+  describe '#success?' do
+    context "with 2xx codes" do
+      it 'returns true' do
+        expect(subject.success?).to eq true
+      end
+    end
+
+    context "with 4xx codes" do
+      it 'returns false' do
+        subject.code = 400
+        expect(subject.success?).to eq false
+      end
+    end
+
+    context "with 5xx codes" do
+      it 'returns false' do
+        subject.code = 500
+        expect(subject.success?).to eq false
+      end
+    end
+  end
+
   describe '#code' do
     it 'returns 200' do
       expect(subject.code).to eq 200

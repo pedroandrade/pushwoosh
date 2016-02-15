@@ -22,6 +22,14 @@ module Pushwoosh
       end
     end
 
+    def success?
+      if /\A2\d\d\z/ === code.to_s
+        true
+      else
+        false
+      end
+    end
+
     def params
       {
         code: code,
