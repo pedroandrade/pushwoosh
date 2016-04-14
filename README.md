@@ -24,12 +24,12 @@ Or install it yourself as:
 
 ### Notify all devices:
 ```
-Pushwoosh.PushNotification.new(auth_hash).notify_all(message, other_options)
+Pushwoosh::PushNotification.new(auth_hash).notify_all(message, other_options)
 ```
 
 ### Notify some devices or a device:
 ```
-Pushwoosh.PushNotification.new(auth_hash).notify_devices(message, devices, other_options)
+Pushwoosh::PushNotification.new(auth_hash).notify_devices(message, devices, other_options)
 ```
 
 ```auth_hash = { auth: '55555-5555', application: '1234zxcvb' }```
