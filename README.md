@@ -34,7 +34,7 @@ Pushwoosh::PushNotification.new(auth_hash).notify_devices(message, devices, othe
 
 ```auth_hash = { auth: '55555-5555', application: '1234zxcvb' }```
 
-for ```other_options``` hash you can see the [https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create](http://) and you can choose any key you want
+for ```other_options``` hash you can see the [Pushwoosh Documentation](https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create) and you can choose any key you want
 
 ### If you're using Rails:
 
