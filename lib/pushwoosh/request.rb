@@ -26,13 +26,17 @@ module Pushwoosh
     end
 
     def make_post!
-      response = self.class.post(url, body: build_request.to_json).parsed_response
+      response = self.class.post(url, timeout: timeout, body: build_request.to_json).parsed_response
       Response.new(response)
     end
 
     private
 
     attr_reader :options, :base_request, :notification_options, :url
+
+    def timeout
+      ENV["PUSHWOOSH_TIMEOUT"] || 5
+    end
 
     def validations!(url, options)
       fail Pushwoosh::Exceptions::Error, 'Missing application' unless options.fetch(:application)

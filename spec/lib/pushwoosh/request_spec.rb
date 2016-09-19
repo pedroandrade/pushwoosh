@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Pushwoosh::Request do
-
   describe '#make_post!' do
     let(:body) do
       {
@@ -48,7 +47,7 @@ describe Pushwoosh::Request do
       subject { described_class.new('/createMessage', options) }
 
       it 'sends the notification with valid params' do
-        allow(described_class).to receive(:post).with("/createMessage", body: body.to_json).and_return(response)
+        allow(described_class).to receive(:post).with("/createMessage", timeout: 5, body: body.to_json).and_return(response)
         allow(response).to receive(:parsed_response).and_return(OpenStruct.new(response_hash))
         response_of_make_post = subject.make_post!
 
