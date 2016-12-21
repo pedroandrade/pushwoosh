@@ -1,4 +1,5 @@
 require 'httparty'
+require 'multi_json'
 
 module Pushwoosh
   class Request
@@ -26,7 +27,7 @@ module Pushwoosh
     end
 
     def make_post!
-      response = self.class.post(url, body: build_request.to_json).parsed_response
+      response = self.class.post(url, body: build_request_json).parsed_response
       Response.new(response)
     end
 
@@ -42,6 +43,10 @@ module Pushwoosh
 
     def build_request
       { request: full_request_with_notifications }
+    end
+
+    def build_request_json
+      MultiJson.dump(build_request)
     end
 
     def full_request_with_notifications

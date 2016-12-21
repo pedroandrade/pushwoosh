@@ -3,6 +3,7 @@ PATH
   specs:
     pushwoosh (1.0.1)
       httparty (~> 0.13.3)
+      multi_json (~> 1.11)
 
 GEM
   remote: https://rubygems.org/
@@ -12,12 +13,13 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
-    httparty (0.13.3)
+    httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    json (1.8.2)
+    json (1.8.3)
     method_source (0.8.2)
-    multi_xml (0.5.5)
+    multi_json (1.12.1)
+    multi_xml (0.6.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -54,4 +56,4 @@ DEPENDENCIES
   webmock (~> 1.15.0)
 
 BUNDLED WITH
-   1.10.6
+   1.13.5
