@@ -18,7 +18,11 @@ module Pushwoosh
     end
 
     def notify_devices(message, devices, other_options = {})
-      other_options.merge!(content: message, devices: devices)
+      if message
+        other_options.merge!(content: message, devices: devices)
+      else
+        other_options.merge!(devices: devices)
+      end
       create_message(other_options)
     end
 
@@ -27,8 +31,6 @@ module Pushwoosh
     attr_reader :auth_hash
 
     def create_message(notification_options = {})
-      fail Pushwoosh::Exceptions::Error, 'Message is missing' if notification_options[:content].nil? || notification_options[:content].empty?
-
       Request.make_post!('/createMessage', build_notification_options(notification_options))
     end
 
@@ -39,7 +41,8 @@ module Pushwoosh
     def default_notification_options
       {
         send_date: "now",
-        ios_badges: "+1"
+        ios_badges: "+1",
+        ios_sound: ""
       }
     end
   end

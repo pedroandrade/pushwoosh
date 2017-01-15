@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cp.pushwoosh.com/json/1.3/registerDevice
+    body:
+      encoding: UTF-8
+      string: '{"request":{"hwid":"","device_type":"","push_token":"","timezone":"","auth":"5555-5555","application":"555555"}}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.6.3
+      Date:
+      - Thu, 28 Jan 2016 23:45:02 GMT
+      Content-Type:
+      - application/json; charset=utf8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - phpDaemon/1.0-beta3
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, OPTIONS
+      X-Pw-Cluster-Node:
+      - api-27
+      X-Pw-Front-Node:
+      - front-06
+    body:
+      encoding: UTF-8
+      string: '{"status_code":200,"status_message":"ok","response":null}'
+    http_version:
+  recorded_at: Thu, 28 Jan 2016 23:45:03 GMT
+recorded_with: VCR 2.8.0
