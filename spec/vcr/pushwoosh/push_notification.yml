@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://cp.pushwoosh.com/json/1.3/createMessage
+    uri: https://speedetab.pushwoosh.com/json/1.3/createMessage
     body:
       encoding: UTF-8
       string: '{"request":{"application":"5555-5555","auth":"abcdefg","notifications":[{"send_date":"now","content":"Testing"}]}}'

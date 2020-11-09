@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://cp.pushwoosh.com/json/1.3/registerDevice
+    uri: https://speedetab.pushwoosh.com/json/1.3/registerDevice
     body:
       encoding: UTF-8
       string: '{"request":{"hwid":"123-456-789","device_type":1,"push_token":"999999999999999999999999999999","timezone":3600,"application":"5555-5555","auth":"5555555"}}'

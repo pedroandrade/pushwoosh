@@ -92,7 +92,7 @@ module Pushwoosh
     end
 
     def base_url
-      "https://cp.pushwoosh.com/json/1.3"
+      "https://speedetab.pushwoosh.com/json/1.3"
     end
   end
 end

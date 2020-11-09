@@ -4,7 +4,7 @@ module Pushwoosh
   class Request
     include HTTParty
 
-    base_uri 'https://cp.pushwoosh.com/json/1.3/'
+    base_uri 'https://speedetab.pushwoosh.com/json/1.3/'
     format :json
 
     def self.make_post!(*args)
